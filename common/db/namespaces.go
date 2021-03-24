@@ -16,6 +16,7 @@ import (
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/bson/primitive"
 	"go.mongodb.org/mongo-driver/mongo"
+	"go.mongodb.org/mongo-driver/mongo/options"
 )
 
 type CollectionInfo struct {
@@ -66,7 +67,9 @@ func GetCollections(database *mongo.Database, name string) (*mongo.Cursor, error
 		filter = append(filter, primitive.E{"name", name})
 	}
 
-	cursor, err := database.ListCollections(nil, filter)
+	listCollectionOptions := options.ListCollections().SetNameOnly(true).SetAuthorizedCollections(true)
+
+	cursor, err := database.ListCollections(nil, filter, listCollectionOptions)
 	if err != nil {
 		return nil, err
 	}

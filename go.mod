@@ -24,3 +24,5 @@ require (
 	gopkg.in/tomb.v2 v2.0.0-20140626144623-14b3d72120e8
 	gopkg.in/yaml.v2 v2.4.0
 )
+
+replace go.mongodb.org/mongo-driver => github.com/muendelezaji/mongo-go-driver v1.4.3-0.20210324205241-5cbfb3804908
